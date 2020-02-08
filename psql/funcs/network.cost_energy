@@ -1,0 +1,23 @@
+-- FUNCTION: network.cost_energy(integer, double precision, double precision, double precision)
+
+-- DROP FUNCTION network.cost_energy(integer, double precision, double precision, double precision);
+
+CREATE OR REPLACE FUNCTION network.cost_energy(
+	travel_mode integer,
+	dx double precision,
+	dy double precision,
+	dz double precision)
+    RETURNS double precision
+    LANGUAGE 'sql'
+
+    COST 100
+    VOLATILE 
+    
+AS $BODY$
+
+SELECT dx * dy * dz;
+
+$BODY$;
+
+ALTER FUNCTION network.cost_energy(integer, double precision, double precision, double precision)
+    OWNER TO postgres;
